@@ -1,0 +1,61 @@
+// 1. Scroll reveal animation
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+}, { threshold: 0.15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// 2. Animated counters
+const counters = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target, end = +el.dataset.count;
+    let n = 0;
+    const step = Math.max(1, Math.ceil(end / 60));
+    const t = setInterval(() => {
+      n += step;
+      if (n >= end) { n = end; clearInterval(t); }
+      el.textContent = n.toLocaleString() + (el.dataset.suffix || '');
+    }, 25);
+    counters.unobserve(el);
+  });
+}, { threshold: 0.6 });
+document.querySelectorAll('[data-count]').forEach(el => counters.observe(el));
+
+// 3. Particle network background
+const c = document.getElementById('particles');
+if (c) {
+  const ctx = c.getContext('2d');
+  let w, h, pts = [];
+  const resize = () => { w = c.width = innerWidth; h = c.height = innerHeight; };
+  resize(); addEventListener('resize', resize);
+  for (let i = 0; i < 70; i++) pts.push({ x: Math.random()*innerWidth, y: Math.random()*innerHeight, vx: (Math.random()-.5)*.6, vy: (Math.random()-.5)*.6 });
+  (function draw() {
+    ctx.clearRect(0, 0, w, h);
+    pts.forEach((p, i) => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > w) p.vx *= -1;
+      if (p.y < 0 || p.y > h) p.vy *= -1;
+      ctx.fillStyle = '#00e5ff';
+      ctx.fillRect(p.x, p.y, 2, 2);
+      for (let j = i + 1; j < pts.length; j++) {
+        const d = Math.hypot(p.x - pts[j].x, p.y - pts[j].y);
+        if (d < 120) {
+          ctx.strokeStyle = `rgba(139,92,246,${1 - d/120})`;
+          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke();
+        }
+      }
+    });
+    requestAnimationFrame(draw);
+  })();
+}
+
+// 4. Parallax on orbs
+addEventListener('scroll', () => {
+  document.querySelectorAll('.orb').forEach((o, i) => {
+    o.style.translate = `0 ${scrollY * (i ? -0.12 : 0.15)}px`;
+  });
+});
+
+// 5. Fake form submit (lab page)
+const f = document.getElementById('testForm');
+if (f) f.addEventListener('submit', e => { e.preventDefault(); document.getElementById('formMsg').textContent = '✅ Form submitted (test only).'; });

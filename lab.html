@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accessibility Test Lab | AI Future</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <nav aria-label="Main navigation">
+    <div class="container">
+      <a class="logo" href="index.html">AI&nbsp;FUTURE</a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="lab.html">Accessibility Lab</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="hero" style="min-height:60vh">
+      <div class="orb o1 decorative" aria-hidden="true"></div>
+      <div class="orb o2 decorative" aria-hidden="true"></div>
+      <div class="container">
+        <h1 class="reveal">Accessibility <span class="grad">Test Lab</span></h1>
+        <p class="reveal delay1">Turn on each feature of your accessibility widget and check what changes on this page.</p>
+      </div>
+    </header>
+
+    <!-- COLOR & CONTRAST -->
+    <section>
+      <div class="container">
+        <h2 class="section-title reveal">1. Color & Contrast</h2>
+        <p class="section-sub reveal">Test: High Contrast, Dark/Light Mode, Invert, Monochrome, Blue Light, Saturation, Color Softening</p>
+        <div class="grid">
+          <div class="card reveal"><h3>Normal text card</h3><p>This paragraph is muted grey on purpose, so contrast changes are easy to see.</p></div>
+          <div class="card reveal delay1"><div class="test-img" role="img" aria-label="Colorful gradient sample">Colorful Gradient</div></div>
+          <div class="card reveal delay2"><span class="badge">NEW</span><h3>Badge + button</h3><p>Check colors here.</p><button class="btn">Click me</button></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEXT / HEADING / BACKGROUND COLOR -->
+    <section>
+      <div class="container">
+        <h2 class="section-title reveal">2. Text, Heading & Background Color</h2>
+        <p class="section-sub reveal">Test: Text Color, Heading Color, Background Color pickers</p>
+        <div class="card reveal">
+          <h3>Sample heading</h3>
+          <p>The quick brown fox jumps over the lazy dog. AI is helping people in every field, every day.</p>
+          <h4>Smaller heading (H4)</h4>
+          <p>Change the color options in your widget and watch all headings and text update.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BACKGROUND IMAGES / TRANSPARENCY / DECORATIVE -->
+    <section>
+      <div class="container">
+        <h2 class="section-title reveal">3. Images, Transparency & Decorative Elements</h2>
+        <p class="section-sub reveal">Test: Hide Background Images, Reduce Transparency, Hide Decorative Elements</p>
+        <div class="grid">
+          <div class="card reveal"><h3>Background image box</h3><div class="test-img">CSS background-image</div></div>
+          <div class="card reveal delay1"><h3>Glass (transparent) card</h3><p>This card uses transparency and blur. Reduce Transparency should make it more solid.</p></div>
+          <div class="card reveal delay2"><h3>Decorative items</h3><p>The glowing orbs and particles in the background are decorative. <span class="decorative" aria-hidden="true">✨🌟✨</span></p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ELEMENT HIGHLIGHTS -->
+    <section>
+      <div class="container">
+        <h2 class="section-title reveal">4. Element Highlights</h2>
+        <p class="section-sub reveal">Test: Highlight Links, Highlight Headings, Highlight Form Fields (size, opacity, color)</p>
+        <div class="card reveal">
+          <h3>Links</h3>
+          <p>
+            <a href="index.html">Go to Home</a> ·
+            <a href="https://www.wikipedia.org" target="_blank" rel="noopener">Wikipedia (external)</a> ·
+            <a href="#testForm">Jump to form</a>
+          </p>
+          <h3>Headings</h3>
+          <h2 style="font-size:1.4rem">This is an H2</h2>
+          <h3>This is an H3</h3>
+          <h4>This is an H4</h4>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMS -->
+    <section>
+      <div class="container">
+        <h2 class="section-title reveal">5. Form Fields</h2>
+        <p class="section-sub reveal">Test: Highlight Form Fields, keyboard typing, focus</p>
+        <div class="card reveal">
+          <form id="testForm">
+            <div><label for="name">Full name</label><input id="name" type="text" placeholder="Your name" required></div>
+            <div><label for="email">Email</label><input id="email" type="email" placeholder="you@example.com" required></div>
+            <div><label for="topic">Favorite AI topic</label>
+              <select id="topic"><option>Healthcare</option><option>Education</option><option>Robots</option><option>Creative AI</option></select></div>
+            <div><label for="msg">Message</label><textarea id="msg" rows="4"></textarea></div>
+            <div><input type="checkbox" id="agree" style="width:auto"> <label for="agree" style="display:inline">I like AI</label></div>
+            <button class="btn" type="submit">Submit test</button>
+            <p id="formMsg" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEYBOARD NAVIGATION -->
+    <section>
+      <div class="container">
+        <h2 class="section-title reveal">6. Keyboard Navigation</h2>
+        <p class="section-sub reveal">Test: use Tab, Shift+Tab, Enter and arrow keys only (no mouse)</p>
+        <div class="grid">
+          <button class="btn reveal">Button 1</button>
+          <button class="btn reveal delay1">Button 2</button>
+          <button class="btn reveal delay2">Button 3</button>
+          <a class="btn reveal delay3" href="index.html">Link button</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABLE -->
+    <section>
+      <div class="container">
+        <h2 class="section-title reveal">7. Table & Content Structure</h2>
+        <div class="card reveal" style="overflow-x:auto">
+          <table>
+            <caption style="text-align:left;padding-bottom:10px">AI tools by field</caption>
+            <thead><tr><th scope="col">Field</th><th scope="col">AI use</th><th scope="col">Impact</th></tr></thead>
+            <tbody>
+              <tr><td>Health</td><td>Scan analysis</td><td>High</td></tr>
+              <tr><td>Education</td><td>AI tutors</td><td>High</td></tr>
+              <tr><td>Transport</td><td>Smart navigation</td><td>Medium</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container">© 2026 AI Future · Accessibility Test Lab</div></footer>
+  <script src="main.js"></script>
+</body>
+</html>

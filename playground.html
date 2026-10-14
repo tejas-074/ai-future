@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Playground | AI Future</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <nav aria-label="Main navigation">
+    <div class="container">
+      <a class="logo" href="index.html">AI&nbsp;FUTURE</a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tools.html">AI Tools</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="page-head">
+      <div class="container">
+        <h1 class="reveal">AI <span class="grad">Playground</span></h1>
+        <p class="section-sub reveal">Play a quiz and check how AI may change a job.</p>
+      </div>
+    </header>
+
+    <section style="padding-top:20px">
+      <div class="container" style="max-width:760px">
+        <div class="card">
+          <h2>🎮 Quick AI quiz</h2>
+          <p id="score" role="status">Score: 0 / 8</p>
+          <h3 id="q"></h3>
+          <div id="opts"></div>
+          <button class="btn" id="next" type="button" style="display:none">Next question</button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container" style="max-width:760px">
+        <div class="card">
+          <h2>📊 Job change meter</h2>
+          <label for="job">Choose a job</label>
+          <select id="job">
+            <option value="">Select a job</option>
+            <option value="25|Teacher: AI helps with notes and quizzes, but students still need a human guide.">Teacher</option>
+            <option value="55|Data entry clerk: many repeat tasks can be automated.">Data entry clerk</option>
+            <option value="30|Doctor: AI assists with scans, the doctor decides.">Doctor</option>
+            <option value="45|Software tester: AI writes checks, humans judge quality and risk.">Software tester</option>
+            <option value="15|Electrician: hands-on work stays human.">Electrician</option>
+            <option value="35|Lawyer: AI reads documents fast, but judgment and advice stay human.">Lawyer</option>
+            <option value="40|Driver: driver-assist helps, but full self-driving is still limited.">Driver</option>
+            <option value="20|Nurse: AI helps with records, but care and comfort stay human.">Nurse</option>
+            <option value="50|Customer support agent: chatbots answer simple questions, humans handle hard ones.">Customer support agent</option>
+          </select>
+          <div class="meter" role="img" aria-label="Change level"><i id="fill"></i></div>
+          <p id="jobtxt" role="status">Pick a job to see the meter.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container">© 2026 AI Future · Test website for accessibility tools</div></footer>
+
+  <script>
+    // ----- Quiz (8 questions) -----
+    const Q = [
+      ["Who asked \"Can machines think?\"", ["Alan Turing", "Elon Musk", "Bill Gates"], 0],
+      ["What does AI learn from?", ["Data", "Only magic", "Weather"], 0],
+      ["Which area uses AI to read scans?", ["Healthcare", "Farming only", "Nothing"], 0],
+      ["Who should make the final health decision?", ["A human doctor", "Only the AI", "A random choice"], 0],
+      ["Which should you NOT share with a chatbot?", ["Your passwords", "A recipe idea", "A poem topic"], 0],
+      ["AI helps farmers mainly by...", ["Suggesting when to water crops", "Making it rain", "Replacing the soil"], 0],
+      ["If AI sounds confident, its answer is...", ["Still worth checking", "Always correct", "Never wrong"], 0],
+      ["Which skill stays valuable with AI?", ["Clear communication", "Typing very fast only", "Memorizing everything"], 0]
+    ];
+    const total = Q.length;
+    let i = 0, s = 0;
+    const q = document.getElementById('q'),
+          o = document.getElementById('opts'),
+          n = document.getElementById('next'),
+          sc = document.getElementById('score');
+
+    function show() {
+      n.style.display = 'none';
+      q.textContent = (i + 1) + '. ' + Q[i][0];
+      o.innerHTML = '';
+      delete o.dataset.done;
+      Q[i][1].forEach((t, k) => {
+        const b = document.createElement('button');
+        b.className = 'opt';
+        b.type = 'button';
+        b.textContent = t;
+        b.onclick = e => {
+          if (o.dataset.done) return;
+          o.dataset.done = 1;
+          const r = e.target.getBoundingClientRect();
+          if (k === Q[i][2]) {
+            b.classList.add('ok');
+            s++;
+            if (window.burst) burst(r.left + 40, r.top, 16);
+          } else {
+            b.classList.add('no');
+            o.children[Q[i][2]].classList.add('ok');
+          }
+          sc.textContent = 'Score: ' + s + ' / ' + total;
+          n.style.display = 'inline-block';
+          n.textContent = i < total - 1 ? 'Next question' : 'Play again';
+        };
+        o.appendChild(b);
+      });
+    }
+    n.onclick = () => {
+      if (i < total - 1) { i++; }
+      else { i = 0; s = 0; sc.textContent = 'Score: 0 / ' + total; }
+      show();
+    };
+    show();
+
+    // ----- Job meter -----
+    const job = document.getElementById('job');
+    job.onchange = () => {
+      if (!job.value) return;
+      const [v, t] = job.value.split('|');
+      document.getElementById('fill').style.width = v + '%';
+      document.getElementById('jobtxt').textContent = v + '% of tasks may change. ' + t;
+    };
+  </script>
+
+  <script src="main.js"></script>
+  <script src="https://staging-widget.braoza.com/v1/assets/static-pages/injector.js" type="module" data-account="mv7rxi5i9f"></script>
+</body>
+</html>

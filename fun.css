@@ -1,0 +1,20 @@
+/* fun.css: extra animations + new page styles */
+#glow{position:fixed;width:360px;height:360px;border-radius:50%;pointer-events:none;z-index:-1;background:radial-gradient(circle,rgba(0,229,255,.16),transparent 65%);transform:translate(-50%,-50%);left:50%;top:50%}
+.marquee{overflow:hidden;border-block:1px solid var(--border);padding:14px 0;white-space:nowrap;background:rgba(255,255,255,.03)}
+.marquee div{display:inline-block;animation:mq 28s linear infinite;font-size:1.25rem;color:var(--muted)}
+.marquee:hover div{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+.cursor::after{content:"|";margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.bit{position:fixed;pointer-events:none;z-index:200;font-size:1.3rem;animation:fly 1s ease-out forwards}
+@keyframes fly{to{transform:translate(var(--dx),var(--dy)) rotate(360deg);opacity:0}}
+.timeline{position:relative}
+.timeline::after{content:"";position:absolute;left:-2px;top:0;width:2px;height:var(--p,0%);background:linear-gradient(var(--c1),var(--c3));box-shadow:0 0 12px var(--c1)}
+.timeline h3{font-size:1.8rem;color:var(--c1)}
+.opt{display:block;width:100%;text-align:left;margin:8px 0;padding:14px 18px;border-radius:14px;border:1px solid var(--border);background:var(--card);color:var(--text);font-size:1rem;cursor:pointer;transition:.3s}
+.opt:hover{border-color:var(--c1);transform:translateX(8px)}
+.opt.ok{background:rgba(0,200,120,.28);border-color:#00c878}
+.opt.no{background:rgba(255,61,129,.28);border-color:var(--c3)}
+.meter{height:14px;border-radius:8px;background:var(--card);overflow:hidden;margin:14px 0}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--c1),var(--c3));transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+@media(prefers-reduced-motion:reduce){.marquee div{animation:none}#glow{display:none}}

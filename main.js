@@ -123,3 +123,12 @@ const secIO = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.08 });
 document.querySelectorAll('main section').forEach(s => { s.classList.add('sec'); secIO.observe(s); });
+
+// 10. Load the fun effects on every page
+const funCss = document.createElement('link');
+funCss.rel = 'stylesheet';
+funCss.href = 'fun.css';
+document.head.appendChild(funCss);
+const funJs = document.createElement('script');
+funJs.src = 'fun.js';
+document.body.appendChild(funJs);

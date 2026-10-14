@@ -93,3 +93,29 @@ nav .container{min-height:64px;height:auto;padding-top:10px;padding-bottom:10px}
 .price{font-size:1.6rem;font-weight:700;color:var(--c1);margin:8px 0}
 .card .btn{margin-top:14px;padding:10px 22px;font-size:.9rem}
 .no-results{text-align:center;color:var(--muted);display:none}
+
+/* ===== Batch 2: blog, pricing, contact ===== */
+.article-wrap{max-width:780px;margin:auto}
+.article{margin-bottom:60px}
+.article img{width:100%;height:280px;object-fit:cover;border-radius:18px;margin-bottom:20px}
+.article .meta{color:var(--muted);font-size:.9rem;margin-bottom:14px}
+.article h2{font-size:1.9rem;margin-bottom:10px}
+.article h3{margin:22px 0 8px;color:var(--c1)}
+.article p{margin-bottom:14px}
+.article ul{margin:0 0 14px 22px}
+.article li{margin-bottom:6px}
+blockquote{border-left:4px solid var(--c3);padding:10px 20px;margin:20px 0;background:var(--card);border-radius:0 12px 12px 0;font-style:italic}
+.plan.featured{border-color:var(--c3);box-shadow:0 0 35px rgba(255,61,129,.3)}
+.plan ul{list-style:none;margin:14px 0}
+.plan li{padding:6px 0;border-bottom:1px solid var(--border);color:var(--muted)}
+.faq details{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:16px 20px;margin-bottom:12px}
+.faq summary{cursor:pointer;font-weight:600}
+.faq details p{margin-top:10px;color:var(--muted)}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px}
+fieldset{border:1px solid var(--border);border-radius:12px;padding:14px}
+legend{padding:0 8px;font-weight:600}
+.radio-row{display:flex;gap:20px;flex-wrap:wrap}
+.radio-row input,.check-row input{width:auto}
+.check-row{display:flex;gap:10px;align-items:center}
+.info-list{list-style:none}
+.info-list li{margin-bottom:14px}

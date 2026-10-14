@@ -183,6 +183,9 @@ section{padding:clamp(64px,8vw,104px) 0;border-top:1px solid var(--border)}
 .card .icon .line-icon{width:25px;height:25px}
 .stat b,.price,.article h3,.timeline h3,.sc b{color:var(--c1)}
 .stat{padding:24px 16px;border:1px solid var(--border);border-radius:12px;background:var(--card)}
+.stat p{max-width:34ch;margin:12px auto;color:var(--muted)}
+.stat-source{display:inline-block;margin-top:8px;font-size:.82rem}
+.data-note{max-width:760px;margin:24px 0 0;color:var(--muted);font-size:.9rem}
 .timeline{border-color:rgba(85,91,216,.35)}
 .timeline-entry::before{background:var(--c1);box-shadow:0 0 0 5px rgba(85,91,216,.12)}
 .delay1{transition-delay:.1s}.delay2{transition-delay:.18s}.delay3{transition-delay:.26s}

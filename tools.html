@@ -32,7 +32,7 @@
       <div class="orb o1 decorative" aria-hidden="true"></div>
       <div class="container">
         <h1 class="reveal">AI Tools <span class="grad">Directory</span></h1>
-        <p class="section-sub reveal">Explore AI tools that are changing health, learning, work and creativity.</p>
+        <p class="section-sub reveal">A practical directory of real AI products, with links to their official sites. Features and availability can change.</p>
       </div>
     </header>
 
@@ -40,144 +40,116 @@
       <div class="container">
         <div class="toolbar reveal" role="search">
           <label for="toolSearch" class="sr-only" style="position:absolute;left:-999px">Search tools</label>
-          <input id="toolSearch" type="search" placeholder="Search tools, e.g. health, writing, code">
+          <input id="toolSearch" type="search" placeholder="Search tools, e.g. research, writing, code">
           <label for="toolCat" style="position:absolute;left:-999px">Filter by category</label>
           <select id="toolCat">
             <option value="all">All categories</option>
-            <option value="health">Healthcare</option>
             <option value="education">Education</option>
+            <option value="research">Research</option>
             <option value="work">Work & Coding</option>
+            <option value="writing">Writing & Language</option>
             <option value="creative">Creative</option>
           </select>
         </div>
 
         <div class="grid">
-          <article class="card tool reveal" data-cat="health">
-            <img class="card-img" src="https://picsum.photos/seed/medscan/600/400" alt="Doctor reviewing a medical scan on a screen" loading="lazy">
-            <span class="tag">Healthcare</span>
-            <h3>MedScan AI</h3>
-            <p>Reads X-rays and MRI scans, flags unusual areas and helps doctors give faster reports.</p>
-            <div class="price">$49 / month</div>
-            <a class="btn" href="pricing.html">View plans</a>
-          </article>
-
-          <article class="card tool reveal delay1" data-cat="education">
-            <img class="card-img" src="https://picsum.photos/seed/tutormind/600/400" alt="Student studying with a laptop and notebook" loading="lazy">
-            <span class="tag">Education</span>
-            <h3>TutorMind</h3>
-            <p>A personal AI tutor that explains topics in simple language and creates practice quizzes.</p>
-            <div class="price">Free</div>
-            <a class="btn" href="pricing.html">View plans</a>
-          </article>
-
-          <article class="card tool reveal delay2" data-cat="work">
-            <img class="card-img" src="https://picsum.photos/seed/codepilot/600/400" alt="Developer writing code on a dark screen" loading="lazy">
-            <span class="tag">Work & Coding</span>
-            <h3>CodePilot</h3>
-            <p>Suggests code, finds bugs and writes test cases while you type.</p>
-            <div class="price">$19 / month</div>
-            <a class="btn" href="pricing.html">View plans</a>
-          </article>
-
-          <article class="card tool reveal" data-cat="creative">
-            <img class="card-img" src="https://picsum.photos/seed/artforge/600/400" alt="Colorful digital artwork on a tablet" loading="lazy">
-            <span class="tag">Creative</span>
-            <h3>ArtForge</h3>
-            <p>Turns a text idea into posters, logos and illustrations in seconds.</p>
-            <div class="price">$12 / month</div>
-            <a class="btn" href="pricing.html">View plans</a>
+          <article class="card tool reveal" data-cat="work">
+            <img class="card-img" src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Person using a laptop at a desk" loading="lazy">
+            <span class="tag">General assistant</span>
+            <h3>ChatGPT</h3>
+            <p>OpenAI's assistant can help with questions, drafting, learning, coding and working with supported media.</p>
+            <a class="btn" href="https://chatgpt.com/">Visit ChatGPT</a>
           </article>
 
           <article class="card tool reveal delay1" data-cat="work">
-            <img class="card-img" src="https://picsum.photos/seed/meetnote/600/400" alt="Team meeting around a conference table" loading="lazy">
-            <span class="tag">Work & Coding</span>
-            <h3>MeetNote</h3>
-            <p>Records meetings, writes a summary and lists action items for each person.</p>
-            <div class="price">$15 / month</div>
-            <a class="btn" href="pricing.html">View plans</a>
+            <img class="card-img" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Colleagues working together around laptops" loading="lazy">
+            <span class="tag">General assistant</span>
+            <h3>Claude</h3>
+            <p>Anthropic's assistant supports writing, analysis, coding and document-based tasks.</p>
+            <a class="btn" href="https://claude.ai/">Visit Claude</a>
           </article>
 
-          <article class="card tool reveal delay2" data-cat="health">
-            <img class="card-img" src="https://picsum.photos/seed/fitmind/600/400" alt="Person checking fitness data on a smartwatch" loading="lazy">
-            <span class="tag">Healthcare</span>
-            <h3>FitMind</h3>
-            <p>Tracks sleep, steps and heart rate, then suggests a simple daily routine.</p>
-            <div class="price">$9 / month</div>
-            <a class="btn" href="pricing.html">View plans</a>
+          <article class="card tool reveal delay2" data-cat="work">
+            <img class="card-img" src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Modern shared workspace with desks and computers" loading="lazy">
+            <span class="tag">General assistant</span>
+            <h3>Google Gemini</h3>
+            <p>Google's AI assistant can help with research, writing, problem-solving and supported image or file tasks.</p>
+            <a class="btn" href="https://gemini.google.com/">Visit Gemini</a>
+          </article>
+
+          <article class="card tool reveal" data-cat="research">
+            <img class="card-img" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Laptop displaying a software development workspace" loading="lazy">
+            <span class="tag">Research</span>
+            <h3>Perplexity</h3>
+            <p>An answer engine that searches the web and presents responses with links to cited sources. Check the sources for yourself.</p>
+            <a class="btn" href="https://www.perplexity.ai/">Visit Perplexity</a>
+          </article>
+
+          <article class="card tool reveal delay1" data-cat="research">
+            <img class="card-img" src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Books arranged on shelves in a library" loading="lazy">
+            <span class="tag">Research</span>
+            <h3>NotebookLM</h3>
+            <p>Google's research assistant works from sources you provide and can help summarize and explore those materials.</p>
+            <a class="btn" href="https://notebooklm.google/">Visit NotebookLM</a>
+          </article>
+
+          <article class="card tool reveal delay2" data-cat="work">
+            <img class="card-img" src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Source code displayed on a computer screen" loading="lazy">
+            <span class="tag">Coding</span>
+            <h3>GitHub Copilot</h3>
+            <p>An AI coding assistant that can suggest code and help explain or modify it inside supported development workflows.</p>
+            <a class="btn" href="https://github.com/features/copilot">Visit GitHub Copilot</a>
           </article>
 
           <article class="card tool reveal" data-cat="education">
-            <img class="card-img" src="https://picsum.photos/seed/langlearn/600/400" alt="Two students practicing a language together" loading="lazy">
+            <img class="card-img" src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Teacher supporting students as they study" loading="lazy">
             <span class="tag">Education</span>
-            <h3>LinguaBuddy</h3>
-            <p>Practice speaking a new language with an AI partner that corrects your grammar.</p>
-            <div class="price">$7 / month</div>
-            <a class="btn" href="pricing.html">View plans</a>
+            <h3>Khanmigo</h3>
+            <p>Khan Academy's AI learning guide is designed to coach learners through problems rather than simply provide answers. Availability varies.</p>
+            <a class="btn" href="https://www.khanacademy.org/khan-labs">Visit Khan Academy</a>
           </article>
 
-          <article class="card tool reveal delay1" data-cat="creative">
-            <img class="card-img" src="https://picsum.photos/seed/soundwave/600/400" alt="Music studio with headphones and a mixing desk" loading="lazy">
-            <span class="tag">Creative</span>
-            <h3>SoundWave</h3>
-            <p>Creates background music and voice-overs for videos and podcasts.</p>
-            <div class="price">$14 / month</div>
-            <a class="btn" href="pricing.html">View plans</a>
+          <article class="card tool reveal delay1" data-cat="writing">
+            <img class="card-img" src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Notebook and pen on a writing desk" loading="lazy">
+            <span class="tag">Writing</span>
+            <h3>Grammarly</h3>
+            <p>Writing assistance for grammar, clarity and tone, with generative features available in supported products.</p>
+            <a class="btn" href="https://www.grammarly.com/">Visit Grammarly</a>
           </article>
 
-          <article class="card tool reveal" data-cat="work">
-            <img class="card-img" src="https://picsum.photos/seed/legallens/600/400" alt="Lawyer reading documents at a desk" loading="lazy">
-            <span class="tag">Work & Coding</span>
-            <h3>LegalLens</h3>
-            <p>Reads long contracts and highlights risky clauses in simple words.</p>
-            <div class="price">$25 / month</div>
-            <a class="btn" href="pricing.html">View plans</a>
-          </article>
-
-          <article class="card tool reveal delay1" data-cat="education">
-            <img class="card-img" src="https://picsum.photos/seed/mathwiz/600/400" alt="Math formulas written on a blackboard" loading="lazy">
-            <span class="tag">Education</span>
-            <h3>MathWiz</h3>
-            <p>Solves math problems step by step so you learn the method, not just the answer.</p>
-            <div class="price">Free</div>
-            <a class="btn" href="pricing.html">View plans</a>
-          </article>
-
-          <article class="card tool reveal delay2" data-cat="health">
-            <img class="card-img" src="https://picsum.photos/seed/mindease/600/400" alt="Person meditating in a calm room" loading="lazy">
-            <span class="tag">Healthcare</span>
-            <h3>MindEase</h3>
-            <p>Guides short breathing and relaxation sessions and reminds you to take breaks.</p>
-            <div class="price">$6 / month</div>
-            <a class="btn" href="pricing.html">View plans</a>
+          <article class="card tool reveal delay2" data-cat="writing">
+            <img class="card-img" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Students learning together around a table" loading="lazy">
+            <span class="tag">Language</span>
+            <h3>DeepL</h3>
+            <p>Machine translation and writing tools that help people translate and refine text across supported languages.</p>
+            <a class="btn" href="https://www.deepl.com/">Visit DeepL</a>
           </article>
 
           <article class="card tool reveal" data-cat="creative">
-            <img class="card-img" src="https://picsum.photos/seed/storyspark/600/400" alt="Open notebook with a pen and coffee" loading="lazy">
+            <img class="card-img" src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Colorful paintbrushes and art materials" loading="lazy">
             <span class="tag">Creative</span>
-            <h3>StorySpark</h3>
-            <p>Gives story ideas, characters and plot twists when you are stuck writing.</p>
-            <div class="price">$8 / month</div>
-            <a class="btn" href="pricing.html">View plans</a>
+            <h3>Adobe Firefly</h3>
+            <p>Adobe's generative AI tools support image creation and editing in Firefly and selected Creative Cloud apps.</p>
+            <a class="btn" href="https://www.adobe.com/products/firefly.html">Visit Adobe Firefly</a>
           </article>
 
-          <article class="card tool reveal delay1" data-cat="work">
-            <img class="card-img" src="https://picsum.photos/seed/farmsense/600/400" alt="Tractor in a green field at sunrise" loading="lazy">
-            <span class="tag">Work & Coding</span>
-            <h3>FarmSense</h3>
-            <p>Uses sensor data to suggest when crops need water, so farms use less water.</p>
-            <div class="price">$22 / month</div>
-            <a class="btn" href="pricing.html">View plans</a>
+          <article class="card tool reveal delay1" data-cat="creative">
+            <img class="card-img" src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Artist working with colorful paints and materials" loading="lazy">
+            <span class="tag">Creative</span>
+            <h3>Canva Magic Studio</h3>
+            <p>Canva's AI features assist with creating and editing design content within its visual communication platform.</p>
+            <a class="btn" href="https://www.canva.com/magic/">Visit Canva Magic Studio</a>
           </article>
 
-          <article class="card tool reveal delay2" data-cat="work">
-            <img class="card-img" src="https://picsum.photos/seed/safedrive/600/400" alt="Car dashboard with a navigation screen at night" loading="lazy">
-            <span class="tag">Work & Coding</span>
-            <h3>SafeDrive</h3>
-            <p>Warns drivers about sleepiness, sudden braking ahead and risky lane changes.</p>
-            <div class="price">$11 / month</div>
-            <a class="btn" href="pricing.html">View plans</a>
+          <article class="card tool reveal delay2" data-cat="creative">
+            <img class="card-img" src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?auto=format&amp;fit=crop&amp;w=700&amp;q=85" alt="Audio recording equipment in a music studio" loading="lazy">
+            <span class="tag">Audio</span>
+            <h3>ElevenLabs</h3>
+            <p>Voice and audio tools that generate speech from text and support other speech-related workflows.</p>
+            <a class="btn" href="https://elevenlabs.io/">Visit ElevenLabs</a>
           </article>
         </div>
+        <p class="data-note reveal">This independent directory links to real products; it is not an endorsement. Features and access may vary by country or plan. Photographs from <a href="https://unsplash.com/">Unsplash</a> are illustrative, not product screenshots.</p>
         <p id="noResults" class="no-results" role="status">No tools found. Try another word.</p>
       </div>
     </section>

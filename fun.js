@@ -1,18 +1,14 @@
-// fun.js: glow, 3D tilt, marquee, typing, sparkles, new menu links
+// fun.js: glow, 3D tilt, marquee, typing, sparkles, and shared page effects
 const file = location.pathname.split('/').pop() || 'index.html';
 
-// 1. Add new pages to the menu + highlight current page
+// 1. Highlight the current page in the menu
 const ul = document.querySelector('nav ul');
-[['journey.html','Journey'],['playground.html','Playground'],['games.html','Games']].forEach(([h,t]) => {
-  if (ul && !ul.querySelector(`a[href="${h}"]`)) {
-    const li = document.createElement('li');
-    li.innerHTML = `<a href="${h}">${t}</a>`;
-    ul.appendChild(li);
-  }
-});
-document.querySelectorAll('nav ul a').forEach(a => {
-  if (a.getAttribute('href') === file) a.setAttribute('aria-current','page');
-});
+if (ul) {
+  const current = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('nav ul a').forEach(a => {
+    if (a.getAttribute('href') === current) a.setAttribute('aria-current','page');
+  });
+}
 
 // 2. Cursor glow
 const g = document.createElement('div');
@@ -54,22 +50,30 @@ document.querySelectorAll('[data-type]').forEach(el => {
   })();
 });
 
-// 5. Sparkle burst (also used by the quiz)
-window.burst = (x, y, n = 14, set = ['✨','⭐','💫','🚀']) => {
+// 5. Coding burst effect on every click
+window.burst = (x, y, n = 14, set = ['<', '>', '{', '}', '/', '=>', '&&', 'AI']) => {
   for (let k = 0; k < n; k++) {
     const b = document.createElement('span');
     b.className = 'bit';
     b.textContent = set[k % set.length];
     b.style.left = x + 'px';
     b.style.top = y + 'px';
-    b.style.setProperty('--dx', (Math.random() - .5) * 300 + 'px');
-    b.style.setProperty('--dy', (Math.random() - .8) * 260 + 'px');
+    const a = (Math.PI * 2 * k) / n + (Math.random() - .5);
+    const r = 28 + Math.random() * 42;
+    b.style.setProperty('--dx', (Math.cos(a) * r) + 'px');
+    b.style.setProperty('--dy', (Math.sin(a) * r - 14) + 'px');
+    b.style.setProperty('--rot', `${(Math.random() - .5) * 180}deg`);
+    const color = ['#00e5ff', '#8b5cf6', '#ff4ecd', '#7ef9ff', '#a78bfa'][k % 5];
+    b.style.color = color;
+    b.style.setProperty('--glow', color);
     document.body.appendChild(b);
-    setTimeout(() => b.remove(), 1000);
+    setTimeout(() => b.remove(), 900);
   }
 };
 document.addEventListener('click', e => {
-  if (e.target.closest('.btn')) burst(e.clientX, e.clientY, 8);
+  const opts = ['<', '>', '{', '}', '/', '==', '=>', '&&', 'AI'];
+  const codeSet = e.target.closest('a, button, .btn, .opt') ? ['<', '>', '{', '}', '/', '==', '=>', '&&', 'const', 'return', 'AI'] : opts;
+  burst(e.clientX, e.clientY, e.target.closest('a, button, .btn, .opt') ? 14 : 9, codeSet);
 });
 
 // 6. Home page: scrolling marquee under the hero
@@ -82,11 +86,3 @@ if (hero && file.startsWith('index')) {
   m.innerHTML = `<div>${t.repeat(4)}</div>`;
   hero.after(m);
 }
-
-// 7. Journey page: fill the timeline line while scrolling
-const tl = document.querySelector('.timeline');
-if (tl) addEventListener('scroll', () => {
-  const r = tl.getBoundingClientRect();
-  const p = Math.max(0, Math.min(100, (innerHeight * .6 - r.top) / r.height * 100));
-  tl.style.setProperty('--p', p + '%');
-}, { passive: true });

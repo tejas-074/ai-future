@@ -121,7 +121,7 @@ const secIO = new IntersectionObserver((entries) => {
   entries.forEach(e => {
     if (e.isIntersecting) { e.target.classList.add('open'); secIO.unobserve(e.target); }
   });
-}, { threshold: 0.08 });
+}, { threshold: 0 });
 document.querySelectorAll('main section').forEach(s => { s.classList.add('sec'); secIO.observe(s); });
 
 // 10. Load the fun effects on every page

@@ -6,8 +6,8 @@
 @keyframes mq{to{transform:translateX(-50%)}}
 .cursor::after{content:"|";margin-left:2px;animation:blink 1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-.bit{position:fixed;pointer-events:none;z-index:200;font-size:1.3rem;animation:fly 1s ease-out forwards}
-@keyframes fly{to{transform:translate(var(--dx),var(--dy)) rotate(360deg);opacity:0}}
+.bit{position:fixed;pointer-events:none;z-index:400;font-size:1.05rem;font-weight:700;letter-spacing:.08em;font-family:Consolas,"SFMono-Regular",monospace;opacity:0;text-shadow:0 0 12px var(--glow,#00e5ff);animation:codeFly .9s ease-out forwards;user-select:none}
+@keyframes codeFly{0%{opacity:1;transform:translate(0,0) scale(.8) rotate(0deg)}25%{opacity:1}100%{opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1.35)}}
 .timeline{position:relative}
 .timeline::after{content:"";position:absolute;left:-2px;top:0;width:2px;height:var(--p,0%);background:linear-gradient(var(--c1),var(--c3));box-shadow:0 0 12px var(--c1)}
 .timeline h3{font-size:1.8rem;color:var(--c1)}

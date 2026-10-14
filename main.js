@@ -45,6 +45,88 @@ document.querySelectorAll('[data-icon]').forEach(icon => {
   icon.innerHTML = window.siteIcon(icon.dataset.icon, 'line-icon');
 });
 
+const journeyDialog = document.getElementById('journeyDialog');
+if (journeyDialog) {
+  const journeyTrack = document.getElementById('journeyTrack');
+  const journeySlides = [...journeyTrack.querySelectorAll('[data-journey-slide]')];
+  const journeyPosition = document.getElementById('journeyPosition');
+  let journeyOpener;
+  let journeyOpenSequence = 0;
+  let journeyScrollFrame;
+  const activateJourneyYear = index => {
+    journeySlides.forEach((slide, slideIndex) => slide.classList.toggle('is-active', slideIndex === index));
+    journeyPosition.textContent = `${String(index + 1).padStart(2, '0')} / ${String(journeySlides.length).padStart(2, '0')}`;
+    journeyDialog.querySelectorAll('[data-journey-nav]').forEach(button => {
+      if (Number(button.dataset.journeyNav) === index) button.setAttribute('aria-current', 'step');
+      else button.removeAttribute('aria-current');
+    });
+    document.querySelectorAll('[data-journey-index]').forEach(button => {
+      if (Number(button.dataset.journeyIndex) === index) button.setAttribute('aria-current', 'step');
+      else button.removeAttribute('aria-current');
+    });
+  };
+  const updateJourneyFromScroll = () => {
+    if (!journeyDialog.open || journeyTrack.classList.contains('is-positioning')) return;
+    const trackTop = journeyTrack.getBoundingClientRect().top;
+    const index = journeySlides.reduce((closestIndex, slide, slideIndex) => {
+      const distance = Math.abs(slide.getBoundingClientRect().top - trackTop);
+      const closestDistance = Math.abs(journeySlides[closestIndex].getBoundingClientRect().top - trackTop);
+      return distance < closestDistance ? slideIndex : closestIndex;
+    }, 0);
+    activateJourneyYear(index);
+  };
+  journeyTrack.addEventListener('scroll', () => {
+    cancelAnimationFrame(journeyScrollFrame);
+    journeyScrollFrame = requestAnimationFrame(updateJourneyFromScroll);
+  }, { passive: true });
+  const journeySlidePosition = index => {
+    const track = journeyTrack.getBoundingClientRect();
+    const slide = journeySlides[index].getBoundingClientRect();
+    return journeyTrack.scrollTop + slide.top - track.top;
+  };
+
+  const goToJourneyYear = index => {
+    journeyTrack.scrollTo({
+      top: journeySlidePosition(index),
+      behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'
+    });
+  };
+  document.querySelectorAll('[data-journey-index]').forEach(button => {
+    button.addEventListener('click', () => {
+      const index = Number(button.dataset.journeyIndex);
+      const openSequence = ++journeyOpenSequence;
+      journeyOpener = button;
+      journeySlides.forEach(slide => slide.classList.remove('is-active'));
+      journeyTrack.classList.add('is-positioning');
+      journeyTrack.scrollTop = 0;
+      journeyDialog.showModal();
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        if (!journeyDialog.open || openSequence !== journeyOpenSequence) return;
+        journeyTrack.scrollTop = journeySlidePosition(index);
+        journeyTrack.classList.remove('is-positioning');
+        activateJourneyYear(index);
+      }));
+    });
+  });
+  journeyDialog.querySelectorAll('[data-journey-nav]').forEach(button => {
+    button.addEventListener('click', () => goToJourneyYear(Number(button.dataset.journeyNav)));
+  });
+
+  journeyDialog.querySelector('.journey-close').addEventListener('click', () => journeyDialog.close());
+  journeyDialog.addEventListener('click', event => {
+    if (event.target === journeyDialog) journeyDialog.close();
+  });
+  journeyDialog.addEventListener('close', () => {
+    if (journeyDialog.open) return;
+    journeyOpenSequence++;
+    document.querySelectorAll('[data-journey-index]').forEach(button => button.removeAttribute('aria-current'));
+    journeySlides.forEach(slide => slide.classList.remove('is-active'));
+    journeyTrack.classList.add('is-positioning');
+    journeyTrack.scrollTop = 0;
+    journeyOpener?.focus();
+  });
+}
+
 // 1. Scroll reveal animation
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {

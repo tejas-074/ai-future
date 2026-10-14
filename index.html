@@ -90,10 +90,10 @@
       <div class="container">
         <h2 class="section-title reveal">The journey of AI</h2>
         <div class="timeline">
-          <div class="reveal left"><h3>1950s</h3><p>Alan Turing asks: "Can machines think?"</p></div>
-          <div class="reveal left"><h3>1997</h3><p>A computer beats the world chess champion.</p></div>
-          <div class="reveal left"><h3>2010s</h3><p>Deep learning powers voice, image and language AI.</p></div>
-          <div class="reveal left"><h3>Today</h3><p>Generative AI writes, codes, designs and helps everyone.</p></div>
+          <button class="timeline-entry reveal left" type="button" data-journey-index="0" aria-haspopup="dialog"><h3>1950s</h3><p>Alan Turing asks: "Can machines think?"</p></button>
+          <button class="timeline-entry reveal left" type="button" data-journey-index="1" aria-haspopup="dialog"><h3>1997</h3><p>A computer beats the world chess champion.</p></button>
+          <button class="timeline-entry reveal left" type="button" data-journey-index="2" aria-haspopup="dialog"><h3>2010s</h3><p>Deep learning powers voice, image and language AI.</p></button>
+          <button class="timeline-entry reveal left" type="button" data-journey-index="3" aria-haspopup="dialog"><h3>Today</h3><p>Generative AI writes, codes, designs and helps everyone.</p></button>
         </div>
       </div>
     </section>
@@ -163,6 +163,59 @@
       </div>
     </section>
   </main>
+
+  <dialog class="journey-dialog" id="journeyDialog" aria-label="A visual history of artificial intelligence">
+    <div class="journey-dialog-head">
+      <span class="journey-position" id="journeyPosition" aria-live="polite">01 / 04</span>
+      <span class="journey-hint">Scroll or choose a year</span>
+      <button class="journey-close" type="button" aria-label="Close AI history">&times;</button>
+    </div>
+    <div class="journey-track" id="journeyTrack" tabindex="0" aria-label="Scroll through AI history">
+      <article class="journey-slide" data-journey-slide>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/10/AlanTuring1952.jpg" alt="Portrait of Alan Turing in 1952" fetchpriority="high">
+        <div class="journey-copy">
+          <p class="journey-era">THE QUESTION THAT STARTED IT</p>
+          <h2>1950s</h2>
+          <h3>Can machines think?</h3>
+          <p>Mathematician Alan Turing proposed a practical way to discuss machine intelligence. His question helped shape the field that would soon be called artificial intelligence.</p>
+        </div>
+      </article>
+      <article class="journey-slide" data-journey-slide>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/One_of_Deep_Blue%27s_processors_%282586060990%29.jpg" alt="A processor from IBM's Deep Blue chess computer" loading="lazy">
+        <div class="journey-copy">
+          <p class="journey-era">A MILESTONE IN MACHINE PLAY</p>
+          <h2>1997</h2>
+          <h3>A computer wins the match</h3>
+          <p>IBM's Deep Blue defeated world chess champion Garry Kasparov in a six-game match. It showed how specialized computing could outperform people at a complex, rule-based task.</p>
+        </div>
+      </article>
+      <article class="journey-slide" data-journey-slide>
+        <img class="journey-diagram" src="https://upload.wikimedia.org/wikipedia/commons/3/31/1D_Convolutional_Neural_Network_feed_forward_example.png" alt="Diagram showing information moving through layers of a neural network" loading="lazy">
+        <div class="journey-copy">
+          <p class="journey-era">LEARNING FROM EXAMPLES</p>
+          <h2>2010s</h2>
+          <h3>Deep learning takes off</h3>
+          <p>More data and faster processors helped multi-layer neural networks recognize speech, identify objects in images and translate languages with greater accuracy.</p>
+        </div>
+      </article>
+      <article class="journey-slide" data-journey-slide>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2d/DALL-E_2_%22A_photo_of_a_robot_hand_drawing%2C_digital_art%22.jpg" alt="AI-generated image of a robot hand drawing" loading="lazy">
+        <div class="journey-copy">
+          <p class="journey-era">TOOLS FOR EVERYONE</p>
+          <h2>Today</h2>
+          <h3>AI becomes creative</h3>
+          <p>Generative AI can produce text, images, audio and code from prompts. These tools open new possibilities while making accuracy, privacy and responsible use more important.</p>
+        </div>
+      </article>
+    </div>
+    <nav class="journey-years" aria-label="Choose a period in AI history">
+      <span>JUMP TO</span>
+      <button type="button" data-journey-nav="0" aria-current="step">1950s</button>
+      <button type="button" data-journey-nav="1">1997</button>
+      <button type="button" data-journey-nav="2">2010s</button>
+      <button type="button" data-journey-nav="3">Today</button>
+    </nav>
+  </dialog>
 
   <footer><div class="container">© 2026 AI Future · Test website for accessibility tools</div></footer>
   <script src="main.js"></script>

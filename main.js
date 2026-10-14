@@ -1,8 +1,15 @@
 // 1. Scroll reveal animation
 const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
-}, { threshold: 0.15 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('show');
+    io.unobserve(e.target);
+  });
+}, { threshold: 0, rootMargin: '0px 0px -8% 0px' });
+document.querySelectorAll('.reveal').forEach(el => {
+  el.classList.add('scroll-reveal');
+  io.observe(el);
+});
 
 // 2. Animated counters
 const counters = new IntersectionObserver((entries) => {
@@ -21,46 +28,11 @@ const counters = new IntersectionObserver((entries) => {
 }, { threshold: 0.6 });
 document.querySelectorAll('[data-count]').forEach(el => counters.observe(el));
 
-// 3. Particle network background
-const c = document.getElementById('particles');
-if (c) {
-  const ctx = c.getContext('2d');
-  let w, h, pts = [];
-  const resize = () => { w = c.width = innerWidth; h = c.height = innerHeight; };
-  resize(); addEventListener('resize', resize);
-  for (let i = 0; i < 70; i++) pts.push({ x: Math.random()*innerWidth, y: Math.random()*innerHeight, vx: (Math.random()-.5)*.6, vy: (Math.random()-.5)*.6 });
-  (function draw() {
-    ctx.clearRect(0, 0, w, h);
-    pts.forEach((p, i) => {
-      p.x += p.vx; p.y += p.vy;
-      if (p.x < 0 || p.x > w) p.vx *= -1;
-      if (p.y < 0 || p.y > h) p.vy *= -1;
-      ctx.fillStyle = '#00e5ff';
-      ctx.fillRect(p.x, p.y, 2, 2);
-      for (let j = i + 1; j < pts.length; j++) {
-        const d = Math.hypot(p.x - pts[j].x, p.y - pts[j].y);
-        if (d < 120) {
-          ctx.strokeStyle = `rgba(139,92,246,${1 - d/120})`;
-          ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke();
-        }
-      }
-    });
-    requestAnimationFrame(draw);
-  })();
-}
-
-// 4. Parallax on orbs
-addEventListener('scroll', () => {
-  document.querySelectorAll('.orb').forEach((o, i) => {
-    o.style.translate = `0 ${scrollY * (i ? -0.12 : 0.15)}px`;
-  });
-});
-
-// 5. Fake form submit (lab page)
+// 3. Fake form submit (lab page)
 const f = document.getElementById('testForm');
 if (f) f.addEventListener('submit', e => { e.preventDefault(); document.getElementById('formMsg').textContent = '✅ Form submitted (test only).'; });
 
-// 6. Tools page: search + category filter
+// 4. Tools page: search + category filter
 const search = document.getElementById('toolSearch');
 const cat = document.getElementById('toolCat');
 if (search && cat) {
@@ -80,7 +52,7 @@ if (search && cat) {
   cat.addEventListener('change', apply);
 }
 
-// 7. Highlight the current page in the menu
+// 5. Highlight the current page in the menu
 (function () {
   const file = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('nav ul a').forEach(a => {
@@ -88,43 +60,22 @@ if (search && cat) {
   });
 })();
 
-// 8. Scroll progress bar + rocket
+// 6. Scroll progress bar
 const bar = document.createElement('div');
 bar.id = 'scrollbar';
 bar.setAttribute('aria-hidden', 'true');
 document.body.appendChild(bar);
 
-const rocket = document.createElement('button');
-rocket.id = 'rocket';
-rocket.type = 'button';
-rocket.setAttribute('aria-label', 'Launch back to top');
-rocket.innerHTML = '<span class="rk" aria-hidden="true">🚀</span><span class="flame" aria-hidden="true"></span>';
-document.body.appendChild(rocket);
-
-let flyTimer;
-function onScrollRocket() {
+function onScrollProgress() {
   const max = document.documentElement.scrollHeight - innerHeight;
   const p = max > 0 ? scrollY / max : 0;
   bar.style.width = (p * 100) + '%';
-  rocket.style.transform = `translateY(${-p * (innerHeight - 130)}px)`;
-  rocket.classList.add('flying');
-  clearTimeout(flyTimer);
-  flyTimer = setTimeout(() => rocket.classList.remove('flying'), 150);
 }
-addEventListener('scroll', onScrollRocket, { passive: true });
-addEventListener('resize', onScrollRocket);
-onScrollRocket();
-rocket.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+addEventListener('scroll', onScrollProgress, { passive: true });
+addEventListener('resize', onScrollProgress);
+onScrollProgress();
 
-// 9. Sections "open" when they enter the screen
-const secIO = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('open'); secIO.unobserve(e.target); }
-  });
-}, { threshold: 0 });
-document.querySelectorAll('main section').forEach(s => { s.classList.add('sec'); secIO.observe(s); });
-
-// 10. Load the fun effects on every page
+// 7. Load the fun effects on every page
 const funCss = document.createElement('link');
 funCss.rel = 'stylesheet';
 funCss.href = 'fun.css';

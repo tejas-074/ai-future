@@ -3,7 +3,7 @@ const file = location.pathname.split('/').pop() || 'index.html';
 
 // 1. Add new pages to the menu + highlight current page
 const ul = document.querySelector('nav ul');
-[['journey.html','Journey'],['playground.html','Playground']].forEach(([h,t]) => {
+[['journey.html','Journey'],['playground.html','Playground'],['games.html','Games']].forEach(([h,t]) => {
   if (ul && !ul.querySelector(`a[href="${h}"]`)) {
     const li = document.createElement('li');
     li.innerHTML = `<a href="${h}">${t}</a>`;

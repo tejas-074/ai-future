@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Tools Directory | AI Future</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <canvas id="particles" aria-hidden="true"></canvas>
+
+  <nav aria-label="Main navigation">
+    <div class="container">
+      <a class="logo" href="index.html">AI&nbsp;FUTURE</a>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tools.html">AI Tools</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="lab.html">Accessibility Lab</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+    <header class="page-head">
+      <div class="orb o1 decorative" aria-hidden="true"></div>
+      <div class="container">
+        <h1 class="reveal">AI Tools <span class="grad">Directory</span></h1>
+        <p class="section-sub reveal">Explore AI tools that are changing health, learning, work and creativity.</p>
+      </div>
+    </header>
+
+    <section style="padding-top:30px">
+      <div class="container">
+        <div class="toolbar reveal" role="search">
+          <label for="toolSearch" class="sr-only" style="position:absolute;left:-999px">Search tools</label>
+          <input id="toolSearch" type="search" placeholder="Search tools, e.g. health, writing, code">
+          <label for="toolCat" style="position:absolute;left:-999px">Filter by category</label>
+          <select id="toolCat">
+            <option value="all">All categories</option>
+            <option value="health">Healthcare</option>
+            <option value="education">Education</option>
+            <option value="work">Work & Coding</option>
+            <option value="creative">Creative</option>
+          </select>
+        </div>
+
+        <div class="grid">
+          <article class="card tool reveal" data-cat="health">
+            <img class="card-img" src="https://picsum.photos/seed/medscan/600/400" alt="Doctor reviewing a medical scan on a screen" loading="lazy">
+            <span class="tag">Healthcare</span>
+            <h3>MedScan AI</h3>
+            <p>Reads X-rays and MRI scans, flags unusual areas and helps doctors give faster reports.</p>
+            <div class="price">$49 / month</div>
+            <a class="btn" href="pricing.html">View plans</a>
+          </article>
+
+          <article class="card tool reveal delay1" data-cat="education">
+            <img class="card-img" src="https://picsum.photos/seed/tutormind/600/400" alt="Student studying with a laptop and notebook" loading="lazy">
+            <span class="tag">Education</span>
+            <h3>TutorMind</h3>
+            <p>A personal AI tutor that explains topics in simple language and creates practice quizzes.</p>
+            <div class="price">Free</div>
+            <a class="btn" href="pricing.html">View plans</a>
+          </article>
+
+          <article class="card tool reveal delay2" data-cat="work">
+            <img class="card-img" src="https://picsum.photos/seed/codepilot/600/400" alt="Developer writing code on a dark screen" loading="lazy">
+            <span class="tag">Work & Coding</span>
+            <h3>CodePilot</h3>
+            <p>Suggests code, finds bugs and writes test cases while you type.</p>
+            <div class="price">$19 / month</div>
+            <a class="btn" href="pricing.html">View plans</a>
+          </article>
+
+          <article class="card tool reveal" data-cat="creative">
+            <img class="card-img" src="https://picsum.photos/seed/artforge/600/400" alt="Colorful digital artwork on a tablet" loading="lazy">
+            <span class="tag">Creative</span>
+            <h3>ArtForge</h3>
+            <p>Turns a text idea into posters, logos and illustrations in seconds.</p>
+            <div class="price">$12 / month</div>
+            <a class="btn" href="pricing.html">View plans</a>
+          </article>
+
+          <article class="card tool reveal delay1" data-cat="work">
+            <img class="card-img" src="https://picsum.photos/seed/meetnote/600/400" alt="Team meeting around a conference table" loading="lazy">
+            <span class="tag">Work & Coding</span>
+            <h3>MeetNote</h3>
+            <p>Records meetings, writes a summary and lists action items for each person.</p>
+            <div class="price">$15 / month</div>
+            <a class="btn" href="pricing.html">View plans</a>
+          </article>
+
+          <article class="card tool reveal delay2" data-cat="health">
+            <img class="card-img" src="https://picsum.photos/seed/fitmind/600/400" alt="Person checking fitness data on a smartwatch" loading="lazy">
+            <span class="tag">Healthcare</span>
+            <h3>FitMind</h3>
+            <p>Tracks sleep, steps and heart rate, then suggests a simple daily routine.</p>
+            <div class="price">$9 / month</div>
+            <a class="btn" href="pricing.html">View plans</a>
+          </article>
+
+          <article class="card tool reveal" data-cat="education">
+            <img class="card-img" src="https://picsum.photos/seed/langlearn/600/400" alt="Two students practicing a language together" loading="lazy">
+            <span class="tag">Education</span>
+            <h3>LinguaBuddy</h3>
+            <p>Practice speaking a new language with an AI partner that corrects your grammar.</p>
+            <div class="price">$7 / month</div>
+            <a class="btn" href="pricing.html">View plans</a>
+          </article>
+
+          <article class="card tool reveal delay1" data-cat="creative">
+            <img class="card-img" src="https://picsum.photos/seed/soundwave/600/400" alt="Music studio with headphones and a mixing desk" loading="lazy">
+            <span class="tag">Creative</span>
+            <h3>SoundWave</h3>
+            <p>Creates background music and voice-overs for videos and podcasts.</p>
+            <div class="price">$14 / month</div>
+            <a class="btn" href="pricing.html">View plans</a>
+          </article>
+        </div>
+        <p id="noResults" class="no-results" role="status">No tools found. Try another word.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container">© 2026 AI Future · Test website for accessibility tools</div></footer>
+  <script src="main.js"></script>
+  <script src="https://staging-widget.braoza.com/v1/assets/static-pages/injector.js" type="module" data-account="mv7rxi5i9f"></script>
+</body>
+</html>

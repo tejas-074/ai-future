@@ -59,3 +59,23 @@ addEventListener('scroll', () => {
 // 5. Fake form submit (lab page)
 const f = document.getElementById('testForm');
 if (f) f.addEventListener('submit', e => { e.preventDefault(); document.getElementById('formMsg').textContent = '✅ Form submitted (test only).'; });
+
+// 6. Tools page: search + category filter
+const search = document.getElementById('toolSearch');
+const cat = document.getElementById('toolCat');
+if (search && cat) {
+  const cards = document.querySelectorAll('.tool');
+  const empty = document.getElementById('noResults');
+  const apply = () => {
+    const q = search.value.toLowerCase();
+    let shown = 0;
+    cards.forEach(c => {
+      const ok = c.textContent.toLowerCase().includes(q) && (cat.value === 'all' || c.dataset.cat === cat.value);
+      c.style.display = ok ? '' : 'none';
+      if (ok) shown++;
+    });
+    empty.style.display = shown ? 'none' : 'block';
+  };
+  search.addEventListener('input', apply);
+  cat.addEventListener('change', apply);
+}

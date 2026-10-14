@@ -5,7 +5,7 @@ try { S = JSON.parse(localStorage.getItem('aifGames')) || S; } catch (e) {}
 const store = () => { try { localStorage.setItem('aifGames', JSON.stringify(S)); } catch (e) {} };
 
 // id, icon, name, lowerIsBetter
-const G = [['memory','🧠','Memory Match',1],['ttt','❌','Tic-Tac-Toe',0],['word','🔤','Word Scramble',0],['rps','✊','Rock Paper Scissors',0],['react','⚡','Reaction',1],['type','⌨️','Typing',0],['snake','🐍','Snake',0]];
+const G = [['memory','brain','Memory Match',1],['ttt','grid','Tic-Tac-Toe',0],['word','word','Word Scramble',0],['rps','hand','Rock Paper Scissors',0],['react','bolt','Reaction',1],['type','keyboard','Typing',0],['snake','snake','Snake',0]];
 
 const live = document.createElement('div');
 live.className = 'sr'; live.setAttribute('aria-live', 'polite');
@@ -14,7 +14,7 @@ const say = t => { live.textContent = ''; setTimeout(() => live.textContent = t,
 
 function board(up) {
   $('#board').innerHTML = `<div class="sc total ${up ? 'up' : ''}"><small>Total points</small><b>${S.total}</b></div>` +
-    G.map(g => `<div class="sc ${g[0] === up ? 'up' : ''}"><span aria-hidden="true">${g[1]}</span><small>${g[2]}</small><b>${S.best[g[0]] ?? '-'}</b><small>best</small></div>`).join('');
+    G.map(g => `<div class="sc ${g[0] === up ? 'up' : ''}">${siteIcon(g[1], 'game-icon')}<span class="score-name">${g[2]}</span><b>${S.best[g[0]] ?? '-'}</b><small>record</small></div>`).join('');
 }
 function award(id, score, pts) {
   S.total += pts;
@@ -26,7 +26,7 @@ function award(id, score, pts) {
 // ---------- Tabs ----------
 const tabs = $('#tabs'), panels = $('#panels'), init = {}, GAMES = {};
 G.forEach(g => {
-  tabs.insertAdjacentHTML('beforeend', `<button class="tab" role="tab" id="t-${g[0]}" aria-selected="false" aria-controls="p-${g[0]}" tabindex="-1">${g[1]} ${g[2]}</button>`);
+  tabs.insertAdjacentHTML('beforeend', `<button class="tab" role="tab" id="t-${g[0]}" aria-selected="false" aria-controls="p-${g[0]}" tabindex="-1">${siteIcon(g[1], 'game-icon')} ${g[2]}</button>`);
   panels.insertAdjacentHTML('beforeend', `<div class="gpanel" role="tabpanel" id="p-${g[0]}" aria-labelledby="t-${g[0]}"></div>`);
 });
 function openTab(id) {
@@ -49,14 +49,14 @@ $('#reset').onclick = () => { S = { total: 0, best: {} }; store(); board(); say(
 
 // ---------- 1. Memory Match ----------
 GAMES.memory = el => {
-  const E = ['🤖','🧠','🚀','💡','🛰️','🔮','⚙️','🧬'], N = ['robot','brain','rocket','bulb','satellite','crystal ball','gear','DNA'];
+  const E = ['robot','brain','rocket','bulb','satellite','crystal','gear','dna'], N = ['robot','brain','rocket','light bulb','satellite','crystal','gear','DNA'];
   el.innerHTML = `<div class="stats"><span>Moves <b id="mm">0</b></span><span>Pairs <b id="mp">0</b>/8</span><button class="btn sm" type="button" id="mr">Restart</button></div><div class="mgrid" id="mg"></div>`;
   let a, lock, moves, found;
   function start() {
     a = null; lock = false; moves = 0; found = 0;
     $('#mm').textContent = 0; $('#mp').textContent = 0;
     const d = [...E.keys(), ...E.keys()].sort(() => Math.random() - .5);
-    $('#mg').innerHTML = d.map((v, i) => `<button class="mc" type="button" data-v="${v}" aria-label="Card ${i + 1}, face down"><span class="in"><span class="f">❔</span><span class="b">${E[v]}</span></span></button>`).join('');
+    $('#mg').innerHTML = d.map((v, i) => `<button class="mc" type="button" data-v="${v}" aria-label="Card ${i + 1}, face down"><span class="in"><span class="f">${siteIcon('spark', 'memory-icon')}</span><span class="b">${siteIcon(E[v], 'memory-icon')}</span></span></button>`).join('');
   }
   $('#mg').onclick = e => {
     const c = e.target.closest('.mc');
@@ -105,8 +105,8 @@ GAMES.ttt = el => {
   }
   function end(r) {
     over = 1; const m = $('#tm');
-    if (r === 'X') { w++; m.textContent = 'You won! 🎉'; award('ttt', w, 30); pop(); }
-    else if (r === 'O') { l++; m.textContent = 'AI wins this one 🤖'; }
+    if (r === 'X') { w++; m.textContent = 'You won!'; award('ttt', w, 30); pop(); }
+    else if (r === 'O') { l++; m.textContent = 'AI wins this one.'; }
     else { d++; m.textContent = 'Draw!'; award('ttt', w, 10); }
     $('#tw').textContent = w; $('#td').textContent = d; $('#tl').textContent = l;
     say(m.textContent); draw();
@@ -149,8 +149,8 @@ GAMES.word = el => {
 
 // ---------- 4. Rock Paper Scissors vs learning AI ----------
 GAMES.rps = el => {
-  const M = ['🪨','📄','✂️'], NM = ['rock','paper','scissors'];
-  el.innerHTML = `<div class="stats"><span>You <b id="ry">0</b></span><span>AI <b id="ra">0</b></span><span>Ties <b id="rt">0</b></span><span>Win streak <b id="rs">0</b></span></div><div class="choices">${M.map((m, i) => `<button class="ch" type="button" data-i="${i}" aria-label="${NM[i]}">${m}</button>`).join('')}</div><p class="msg" id="rm" role="status">Pick one. The AI studies your habits!</p>`;
+  const M = ['hand','press','scissors'], NM = ['rock','paper','scissors'];
+  el.innerHTML = `<div class="stats"><span>You <b id="ry">0</b></span><span>AI <b id="ra">0</b></span><span>Ties <b id="rt">0</b></span><span>Win streak <b id="rs">0</b></span></div><div class="choices">${M.map((m, i) => `<button class="ch" type="button" data-i="${i}" aria-label="${NM[i]}">${siteIcon(m, 'choice-icon')}</button>`).join('')}</div><p class="msg" id="rm" role="status">Pick one. The AI studies your habits!</p>`;
   let y = 0, a = 0, t = 0, st = 0, last = -1;
   const tr = [[0,0,0],[0,0,0],[0,0,0]];
   el.querySelector('.choices').onclick = e => {
@@ -204,7 +204,7 @@ GAMES.type = el => {
     $('#yw').textContent = wpm; $('#ya').textContent = v.length ? Math.round(ok / v.length * 100) : 100;
     if (v.length >= s.length) {
       done = 1;
-      if (v === s) { $('#ym').textContent = 'Perfect! ' + wpm + ' WPM 🎉'; award('type', wpm, wpm >= 30 ? 30 : 15); pop(); }
+      if (v === s) { $('#ym').textContent = 'Perfect! ' + wpm + ' WPM'; award('type', wpm, wpm >= 30 ? 30 : 15); pop(); }
       else $('#ym').textContent = 'Almost! Some letters are wrong. Press New sentence.';
       say($('#ym').textContent);
     }

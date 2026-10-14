@@ -48,7 +48,9 @@ nav a:hover{color:var(--c1)}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
 .card{background:var(--card);border:1px solid var(--border);backdrop-filter:blur(12px);border-radius:20px;padding:28px;transition:.4s}
 .card:hover{transform:translateY(-8px);border-color:var(--c1);box-shadow:0 0 30px rgba(0,229,255,.25)}
-.card .icon{font-size:2.4rem;margin-bottom:10px}
+.card .icon{display:grid;width:48px;height:48px;place-items:center;margin-bottom:16px;border:1px solid rgba(85,91,216,.16);border-radius:12px;background:rgba(85,91,216,.07);color:var(--c1)}
+.line-icon{display:block;width:26px;height:26px;flex:0 0 auto;stroke:currentColor}
+.heading-icon{display:inline-flex;width:24px;height:24px;align-items:center;justify-content:center;margin-right:8px;vertical-align:-5px;color:var(--c1)}
 .card p{color:var(--muted)}
 
 /* Stats */
@@ -171,8 +173,11 @@ section{padding:clamp(64px,8vw,104px) 0;border-top:1px solid var(--border)}
 .card,.sc,.gpanel,.faq details{background:var(--card);border:1px solid var(--border);border-radius:12px;backdrop-filter:none;box-shadow:none}
 .card{padding:clamp(22px,3vw,32px);transition:transform .45s cubic-bezier(.2,.75,.25,1),border-color .3s,box-shadow .3s}
 .card:hover{transform:translateY(-4px);border-color:rgba(85,91,216,.34);box-shadow:0 12px 30px rgba(23,24,32,.07)}
+.card.tool,.card.plan{display:flex;flex-direction:column}
+.card.tool>.btn,.card.plan>.btn{align-self:flex-start;margin-top:auto}
 .card p,.faq details p{color:var(--muted)}
 .card .icon{font-size:2rem}
+.card .icon .line-icon{width:25px;height:25px}
 .stat b,.price,.article h3,.timeline h3,.sc b{color:var(--c1)}
 .stat{padding:24px 16px;border:1px solid var(--border);border-radius:12px;background:var(--card)}
 .timeline{border-color:rgba(85,91,216,.35)}

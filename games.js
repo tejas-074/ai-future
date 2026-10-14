@@ -220,4 +220,35 @@ GAMES.snake = el => {
   function drw() {
     x.clearRect(0, 0, 360, 360);
     x.shadowColor = '#ff3d81'; x.shadowBlur = 14; x.fillStyle = '#ff3d81';
-    x.beginPath(); x.arc(f[0] * C + 10,
+    x.beginPath(); x.arc(f[0] * C + 10, f[1] * C + 10, 7, 0, 7); x.fill();
+    x.shadowColor = '#00e5ff';
+    sn.forEach((p, i) => { x.fillStyle = i ? '#00b8d4' : '#00e5ff'; x.beginPath(); x.roundRect(p[0] * C + 1, p[1] * C + 1, C - 2, C - 2, 6); x.fill(); });
+    x.shadowBlur = 0;
+  }
+  function place() { do f = [rnd(N), rnd(N)]; while (sn.some(p => p[0] === f[0] && p[1] === f[1])); }
+  function reset() { sn = [[9,9],[8,9],[7,9]]; dir = nd = 'r'; sc = 0; $('#ss').textContent = 0; place(); drw(); }
+  function tick() {
+    if (!el.classList.contains('on')) return;
+    dir = nd; const h = [sn[0][0] + V[dir][0], sn[0][1] + V[dir][1]];
+    if (h[0] < 0 || h[1] < 0 || h[0] >= N || h[1] >= N || sn.some(p => p[0] === h[0] && p[1] === h[1])) {
+      clearInterval(iv); run = 0; $('#sb').textContent = 'Play again';
+      $('#sm').textContent = 'Game over. Score ' + sc; say('Game over. Score ' + sc);
+      if (sc) award('snake', sc, sc * 2); return;
+    }
+    sn.unshift(h);
+    if (h[0] === f[0] && h[1] === f[1]) { sc++; $('#ss').textContent = sc; place(); } else sn.pop();
+    drw();
+  }
+  const turn = d => { if (run && d !== O[dir]) nd = d; };
+  $('#sb').onclick = () => { reset(); run = 1; clearInterval(iv); iv = setInterval(tick, 110); $('#sb').textContent = 'Restart'; $('#sm').textContent = ''; };
+  el.querySelector('.dpad').onclick = e => { const b = e.target.closest('[data-d]'); if (b) turn(b.dataset.d); };
+  document.addEventListener('keydown', e => {
+    if (!run || !el.classList.contains('on')) return;
+    const d = { ArrowUp: 'u', w: 'u', ArrowDown: 'd', s: 'd', ArrowLeft: 'l', a: 'l', ArrowRight: 'r', d: 'r' }[e.key];
+    if (d) { e.preventDefault(); turn(d); }
+  });
+  reset();
+};
+
+board();
+openTab('memory');

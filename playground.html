@@ -48,18 +48,20 @@
         <div class="card">
           <h2>📊 Job change meter</h2>
           <label for="job">Choose a job</label>
-          <select id="job">
-            <option value="">Select a job</option>
-            <option value="25|Teacher: AI helps with notes and quizzes, but students still need a human guide.">Teacher</option>
-            <option value="55|Data entry clerk: many repeat tasks can be automated.">Data entry clerk</option>
-            <option value="30|Doctor: AI assists with scans, the doctor decides.">Doctor</option>
-            <option value="45|Software tester: AI writes checks, humans judge quality and risk.">Software tester</option>
-            <option value="15|Electrician: hands-on work stays human.">Electrician</option>
-            <option value="35|Lawyer: AI reads documents fast, but judgment and advice stay human.">Lawyer</option>
-            <option value="40|Driver: driver-assist helps, but full self-driving is still limited.">Driver</option>
-            <option value="20|Nurse: AI helps with records, but care and comfort stay human.">Nurse</option>
-            <option value="50|Customer support agent: chatbots answer simple questions, humans handle hard ones.">Customer support agent</option>
-          </select>
+          <div class="job-select-wrap">
+            <select id="job" class="styled-select">
+              <option value="">Select a job</option>
+              <option value="25|Teacher: AI helps with notes and quizzes, but students still need a human guide.">Teacher</option>
+              <option value="55|Data entry clerk: many repeat tasks can be automated.">Data entry clerk</option>
+              <option value="30|Doctor: AI assists with scans, the doctor decides.">Doctor</option>
+              <option value="45|Software tester: AI writes checks, humans judge quality and risk.">Software tester</option>
+              <option value="15|Electrician: hands-on work stays human.">Electrician</option>
+              <option value="35|Lawyer: AI reads documents fast, but judgment and advice stay human.">Lawyer</option>
+              <option value="40|Driver: driver-assist helps, but full self-driving is still limited.">Driver</option>
+              <option value="20|Nurse: AI helps with records, but care and comfort stay human.">Nurse</option>
+              <option value="50|Customer support agent: chatbots answer simple questions, humans handle hard ones.">Customer support agent</option>
+            </select>
+          </div>
           <div class="meter" role="img" aria-label="Change level"><i id="fill"></i></div>
           <p id="jobtxt" role="status">Pick a job to see the meter.</p>
         </div>

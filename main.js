@@ -79,3 +79,47 @@ if (search && cat) {
   search.addEventListener('input', apply);
   cat.addEventListener('change', apply);
 }
+
+// 7. Highlight the current page in the menu
+(function () {
+  const file = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('nav ul a').forEach(a => {
+    if (a.getAttribute('href') === file) a.setAttribute('aria-current', 'page');
+  });
+})();
+
+// 8. Scroll progress bar + rocket
+const bar = document.createElement('div');
+bar.id = 'scrollbar';
+bar.setAttribute('aria-hidden', 'true');
+document.body.appendChild(bar);
+
+const rocket = document.createElement('button');
+rocket.id = 'rocket';
+rocket.type = 'button';
+rocket.setAttribute('aria-label', 'Launch back to top');
+rocket.innerHTML = '<span class="rk" aria-hidden="true">🚀</span><span class="flame" aria-hidden="true"></span>';
+document.body.appendChild(rocket);
+
+let flyTimer;
+function onScrollRocket() {
+  const max = document.documentElement.scrollHeight - innerHeight;
+  const p = max > 0 ? scrollY / max : 0;
+  bar.style.width = (p * 100) + '%';
+  rocket.style.transform = `translateY(${-p * (innerHeight - 130)}px)`;
+  rocket.classList.add('flying');
+  clearTimeout(flyTimer);
+  flyTimer = setTimeout(() => rocket.classList.remove('flying'), 150);
+}
+addEventListener('scroll', onScrollRocket, { passive: true });
+addEventListener('resize', onScrollRocket);
+onScrollRocket();
+rocket.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+
+// 9. Sections "open" when they enter the screen
+const secIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('open'); secIO.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('main section').forEach(s => { s.classList.add('sec'); secIO.observe(s); });

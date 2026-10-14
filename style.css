@@ -126,7 +126,7 @@ nav ul a{position:relative;display:inline-block;padding:6px 16px;border-radius:3
 nav ul a::after{content:"";position:absolute;left:16px;right:16px;bottom:2px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--c1),var(--c3));transform:scaleX(0);transform-origin:left;transition:transform .35s}
 nav ul a:hover::after{transform:scaleX(1)}
 nav ul a[aria-current="page"]{color:var(--c1);font-weight:700;background:rgba(0,229,255,.12);border-color:rgba(0,229,255,.45);text-shadow:0 0 14px rgba(0,229,255,.7);box-shadow:0 0 18px rgba(0,229,255,.25)}
-nav ul a[aria-current="page"]::after{transform:scaleX(1)}
+nav ul a[aria-current="page"]::after{transform:scaleX(0)}
 
 /* Scroll progress bar */
 #scrollbar{position:fixed;top:0;left:0;height:4px;width:0;z-index:100;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3));box-shadow:0 0 12px var(--c1)}

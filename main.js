@@ -212,27 +212,3 @@ document.head.appendChild(funCss);
 const funJs = document.createElement('script');
 funJs.src = 'fun.js';
 document.body.appendChild(funJs);
-
-// 8. Editorial pointer and scrolling details
-if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  addEventListener('pointermove', e => {
-    document.documentElement.style.setProperty('--mx', `${e.clientX}px`);
-    document.documentElement.style.setProperty('--my', `${e.clientY}px`);
-  }, { passive: true });
-
-  document.querySelectorAll('.card, .stat').forEach(card => {
-    card.addEventListener('pointermove', e => {
-      const rect = card.getBoundingClientRect();
-      card.style.transform = `perspective(900px) rotateX(${((e.clientY - rect.top) / rect.height - .5) * -2}deg) rotateY(${((e.clientX - rect.left) / rect.width - .5) * 2}deg)`;
-    });
-    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
-  });
-
-  const marquee = document.createElement('div');
-  marquee.className = 'motion-marquee';
-  marquee.setAttribute('aria-hidden', 'true');
-  const items = Array.from({ length: 2 }, () => '<span>AI, made human ✦ explore the future ✦ tools ✦ ideas ✦ impact ✦ </span>').join('');
-  marquee.innerHTML = `<div class="motion-marquee-track">${items}</div>`;
-  const hero = document.querySelector('.hero, .page-head');
-  hero?.insertAdjacentElement('afterend', marquee);
-}
